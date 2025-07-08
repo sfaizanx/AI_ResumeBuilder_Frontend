@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Button, styled } from "@mui/material";
+import { Alert, Button, CircularProgress, styled } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import IT from "../assets/IT.png";
 import Finance from "../assets/Finance.png";
@@ -16,6 +16,7 @@ import { useAuth } from "../context/authContext";
 
 const AtsTester = () => {
   const [step, setStep] = useState(1);
+  const [loader, setLoader] = useState(false);
   const [files, setFiles] = useState(null);
   const [selected, setSelected] = useState("");
   const [score, setScore] = useState(0);
@@ -75,10 +76,12 @@ const AtsTester = () => {
   };
 
   const handleUpload = async (event) => {
+    setLoader(true);
     const files = event.target.files;
 
     if (!files && files.length === 0) {
       toast.error("Please select files to upload.");
+      setLoader(false);
       return;
     }
 
@@ -99,23 +102,27 @@ const AtsTester = () => {
         setScore(res.data.atsScore);
         setSuggestions(res.data.suggestions || []);
         toast.success(message);
+        setLoader(false)
         handleNext();
       } else {
         toast.error(error || "Error processing files. Please try again.");
+        setLoader(false)
       }
     } catch (err) {
       const errorData = err.response?.data;
     if (errorData && errorData.message) {
       handleOpen();
       toast.error(errorData.message);
+      setLoader(false);
     } else {
       toast.error("An error occurred while uploading the file.");
+      setLoader(false);
     }
   }
   };
 
   return (
-    <div className="min-h-screen mt-0 flex flex-col items-center justify-center bg-gray-50" data-aos="fade-up">
+    <div className="min-h-screen mt-0 flex flex-col items-center justify-center mx-7 bg-gray-50" data-aos="fade-up">
       {step !== 3 ? (
         <div>
           <div className="flex items-center justify-center">
@@ -135,7 +142,7 @@ const AtsTester = () => {
               Upload your resume files to test ATS compatibility.
             </p>
             <p className="text-xs md:text-sm text-red-800">Supported formats: PDF, DOCX</p>
-            <Alert severity="warning">Use Read-able/Text-Selectable Files Only. Avoid Kind of Image PDF's</Alert>
+            <Alert className="mt-3 " severity="warning">Use Read-able/Text-Selectable Files Only. Avoid Kind of Image PDF's</Alert>
           </div>
         </div>
       ) : (
@@ -174,14 +181,15 @@ const AtsTester = () => {
             role={undefined}
             variant="contained"
             tabIndex={-1}
-            startIcon={<CloudUploadIcon />}
+            startIcon={loader ? <CircularProgress size="18px" color="inherit" /> : <CloudUploadIcon />}
           >
-            Upload Resume
+            {loader ? 'Analysing...' : 'Upload Resume' }
             <VisuallyHiddenInput
               type="file"
               onChange={handleUpload}
               accept=".pdf,.docx,.doc"
               name="resumeFiles"
+              disabled={loader}
             />
           </Button>
         </div>

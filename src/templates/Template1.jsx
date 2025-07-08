@@ -192,14 +192,14 @@ const EnhancedTemplate1 = ({ formData, selectedColor = "#2563eb" }) => {
                       {personalInfo.linkedIn && (
                         <ContactItem 
                           icon={<LinkedIn />}
-                          text="LinkedIn Profile"
+                          text={personalInfo.linkedIn}
                           href={personalInfo.linkedIn}
                         />
                       )}
                       {personalInfo.portfolio && (
                         <ContactItem 
                           icon={<Language />}
-                          text="Portfolio Website"
+                          text={personalInfo.portfolio}
                           href={personalInfo.portfolio}
                         />
                       )}

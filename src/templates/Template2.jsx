@@ -32,6 +32,7 @@ const mergeObjects = (sample, actual) => {
 };
 
 const ResumeTemplateTwo = ({ formData, selectedColor }) => {
+  
   const mergedData = {
     personalInfo: mergeObjects(
       PlaceHolderData.personalInfo,
@@ -107,7 +108,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
       >
         <div className="flex flex-row min-h-[800px]">
           {/* Left Section */}
-          <div className="w-2/5 bg-[#f4f0fc] p-4 md:p-6 text-gray-800 space-y-4 md:space-y-6">
+          <div className="w-1/3 bg-[#f4f0fc] p-4 md:p-6 text-gray-800 space-y-4 md:space-y-6">
             {/* Contact Section */}
             <div>
               <h2
@@ -136,7 +137,8 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
                     <span>{personalInfo.email}</span>
                   </div>
                 )}
-                {personalInfo?.linkedIn && (
+
+                {personalInfo?.linkedIn?.trim() && (
                   <div className="flex items-center gap-2 text-xs md:text-sm">
                     <LinkedIn
                       className="text-sm"
@@ -236,7 +238,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
           </div>
 
           {/* Right Section */}
-          <div className="w-3/5 p-4 md:p-6 space-y-4 md:space-y-6">
+          <div className="w-2/3 p-4 md:p-6 space-y-4 md:space-y-6">
             {/* Header */}
             <div
               className="border-b pb-4"

@@ -189,11 +189,11 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
                       text={personalInfo.address}
                     />
                   )}
-                  {personalInfo.linkedin && (
+                  {personalInfo.linkedIn && (
                     <ContactItem 
                       icon={<LinkedIn className="w-4 h-4" />}
-                      text="LinkedIn Profile"
-                      href={personalInfo.linkedin}
+                      text={personalInfo.linkedIn}
+                      href={personalInfo.linkedIn}
                     />
                   )}
                   {personalInfo.portfolio && (
