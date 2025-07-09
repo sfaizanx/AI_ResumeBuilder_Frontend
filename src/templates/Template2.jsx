@@ -111,73 +111,72 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
           <div className="w-1/3 bg-[#f4f0fc] p-4 md:p-6 text-gray-800 space-y-4 md:space-y-6">
             {/* Contact Section */}
             <div>
-              <h2
-                className="text-sm md:text-base font-bold mb-3 flex items-center gap-2"
-                style={{ color: selectedColor }}
-              >
-                <Email className="text-base md:text-lg" />
-                CONTACT
-              </h2>
-              <div className="space-y-2">
-                {personalInfo?.phone && (
-                  <div className="flex items-center gap-2 text-xs md:text-sm">
-                    <Phone
-                      className="text-sm"
-                      style={{ color: selectedColor }}
-                    />
-                    <span>{personalInfo.phone}</span>
-                  </div>
-                )}
-                {personalInfo?.email && (
-                  <div className="flex items-center gap-2 text-xs md:text-sm">
-                    <Email
-                      className="text-sm"
-                      style={{ color: selectedColor }}
-                    />
-                    <span>{personalInfo.email}</span>
-                  </div>
-                )}
+  <h2
+    className="text-xs md:text-base font-bold mb-3 gap-1 md:gap-2"
+    style={{ color: selectedColor }}
+  >
+    CONTACT
+  </h2>
+  <div className="space-y-2">
+    {personalInfo?.phone && (
+      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+        <Phone
+          className="w-4 h-4"
+          style={{ color: selectedColor }}
+        />
+        <span>{personalInfo.phone}</span>
+      </div>
+    )}
+    {personalInfo?.email && (
+      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+        <Email
+          className="w-4 h-4"
+          style={{ color: selectedColor }}
+        />
+        <span>{personalInfo.email}</span>
+      </div>
+    )}
+    {personalInfo?.linkedIn?.trim() && (
+      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+        <LinkedIn
+          className="w-4 h-4"
+          style={{ color: selectedColor }}
+        />
+        <span>{personalInfo.linkedIn}</span>
+      </div>
+    )}
+    {personalInfo?.portfolio && (
+      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+        <Language
+          className="w-4 h-4"
+          style={{ color: selectedColor }}
+        />
+        <span>{personalInfo.portfolio}</span>
+      </div>
+    )}
+  </div>
+</div>
 
-                {personalInfo?.linkedIn?.trim() && (
-                  <div className="flex items-center gap-2 text-xs md:text-sm">
-                    <LinkedIn
-                      className="text-sm"
-                      style={{ color: selectedColor }}
-                    />
-                    <span>{personalInfo.linkedIn}</span>
-                  </div>
-                )}
-                {personalInfo?.portfolio && (
-                  <div className="flex items-center gap-2 text-xs md:text-sm">
-                    <Language
-                      className="text-sm"
-                      style={{ color: selectedColor }}
-                    />
-                    <span>{personalInfo.portfolio}</span>
-                  </div>
-                )}
-              </div>
-            </div>
 
             {/* Address Section */}
             {personalInfo?.address && (
-              <div>
-                <h2
-                  className="text-sm md:text-base font-bold mb-3 flex items-center gap-2"
-                  style={{ color: selectedColor }}
-                >
-                  <PinDrop className="text-base md:text-lg" />
-                  ADDRESS
-                </h2>
-                <div className="flex items-start gap-2 text-xs md:text-sm">
-                  <PinDrop
-                    className="text-sm mt-0.5"
-                    style={{ color: selectedColor }}
-                  />
-                  <span>{personalInfo.address}</span>
-                </div>
-              </div>
-            )}
+  <div>
+    <h2
+      className="text-xs md:text-base font-bold mb-3 flex items-start md:items-center gap-1 md:gap-2"
+      style={{ color: selectedColor }}
+    >
+      ADDRESS
+    </h2>
+    <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+      <PinDrop
+        className="w-4 h-4"
+        style={{ color: selectedColor }}
+      />
+      <span>{personalInfo.address}</span>
+    </div>
+  </div>
+)}
+
 
             {/* Skills Section */}
             {skills && skills.length > 0 && (
@@ -207,34 +206,33 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
 
             {/* Languages Section */}
             {languages && languages.length > 0 && (
-              <div>
-                <h2
-                  className="text-sm md:text-base font-bold mb-3 flex items-center gap-2"
-                  style={{ color: selectedColor }}
-                >
-                  <Language className="text-base md:text-lg" />
-                  LANGUAGES
-                </h2>
-                <div className="space-y-2">
-                  {languages.map((lang, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 text-xs md:text-sm"
-                    >
-                      <Language
-                        className="text-sm"
-                        style={{ color: selectedColor }}
-                      />
-                      <span>
-                        {lang.language?.charAt(0).toUpperCase() +
-                          lang.language?.slice(1)}{" "}
-                        – {lang.proficiency}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+  <div>
+    <h2
+      className="text-xs md:text-base font-bold mb-3 flex items-center gap-1 md:gap-2"
+      style={{ color: selectedColor }}
+    >
+      LANGUAGES
+    </h2>
+    <div className="space-y-2">
+      {languages.map((lang, idx) => (
+        <div
+          key={idx}
+          className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all"
+        >
+          <Language
+            className="w-4 h-4"
+            style={{ color: selectedColor }}
+          />
+          <span>
+            {lang.language?.charAt(0).toUpperCase() + lang.language?.slice(1)}{" "}
+            – {lang.proficiency}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
           </div>
 
           {/* Right Section */}
