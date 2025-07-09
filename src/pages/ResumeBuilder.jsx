@@ -1257,8 +1257,8 @@ const ResumeBuilder = ({
               position: "relative",
               width: "100%",
               maxHeight: {
-                xs: "300vh",
-                md: "300vh",
+                xs: "150vh",
+                sm: "300vh",
               } // Prevent modal from being too tall
             }}
           >
@@ -1266,7 +1266,7 @@ const ResumeBuilder = ({
               <Box
                 sx={{
                   transform: {
-                    xs: "scale(1.0)", // Slightly reduced on mobile
+                    xs: "scale(0.5)", // Slightly reduced on mobile
                     sm: "scale(0.9)", // Full size on tablet+
                   },
                   transformOrigin: "center top",
@@ -1275,7 +1275,6 @@ const ResumeBuilder = ({
                   display: "flex",
                   justifyContent: "center",
                   marginTop: "10px",
-                  fontSize: '14px'
                 }}
               >
                 <selectedTemplate.Component formData={formData} />
