@@ -142,7 +142,9 @@ const AtsTester = () => {
               Upload your resume files to test ATS compatibility.
             </p>
             <p className="text-xs md:text-sm text-red-800">Supported formats: PDF, DOCX</p>
-            <Alert className="mt-3 " severity="warning">Use Read-able/Text-Selectable Files Only. Avoid Kind of Image PDF's</Alert>
+            <Alert className="mt-3 " severity="warning">Use Read-able/Text-Selectable Files Only. Avoid Kind of Image PDF's
+              Non-text/Selectable files show's null %
+            </Alert>
           </div>
         </div>
       ) : (
