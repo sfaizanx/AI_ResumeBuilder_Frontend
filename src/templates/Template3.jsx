@@ -87,7 +87,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-sans">
-      <div className="max-w-xs md:max-w-5xl mx-auto">
+      <div className="w-full max-w-5xl mx-auto">
         <div
           ref={componentRef}
           className="bg-white shadow-2xl rounded-2xl overflow-hidden relative"

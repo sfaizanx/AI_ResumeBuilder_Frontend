@@ -136,7 +136,7 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
 
   return (
     <div className="relative min-h-screen bg-gray-50">
-      <div className="max-w-sm md:max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+      <div className="w-full max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         <div
           ref={componentRef}
           className="bg-white text-gray-900 font-sans leading-relaxed"
