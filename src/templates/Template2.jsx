@@ -112,46 +112,50 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             {/* Contact Section */}
             <div>
   <h2
-    className="text-xs md:text-base font-bold mb-3 gap-1 md:gap-2"
+    className="text-[10px] md:text-base font-bold mb-3 gap-1 md:gap-2"
     style={{ color: selectedColor }}
   >
     CONTACT
   </h2>
   <div className="space-y-2">
     {personalInfo?.phone && (
-      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+      <div className="flex flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
         <Phone
-          className="w-4 h-4"
+        fontSize="1px"
+          className="w-2 h-2"
           style={{ color: selectedColor }}
         />
-        <span>{personalInfo.phone}</span>
+        <span className="text-[8px] md:text-base">{personalInfo.phone}</span>
       </div>
     )}
     {personalInfo?.email && (
-      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+      <div className="flex flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
         <Email
+        fontSize="1px"
           className="w-4 h-4"
           style={{ color: selectedColor }}
         />
-        <span>{personalInfo.email}</span>
+        <span className="text-[8px] md:text-base">{personalInfo.email}</span>
       </div>
     )}
     {personalInfo?.linkedIn?.trim() && (
-      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+      <div className="flex flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
         <LinkedIn
+        fontSize="1px"
           className="w-4 h-4"
           style={{ color: selectedColor }}
         />
-        <span>{personalInfo.linkedIn}</span>
+        <span className="text-[8px] md:text-base">{personalInfo.linkedIn}</span>
       </div>
     )}
     {personalInfo?.portfolio && (
-      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+      <div className="flex flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
         <Language
+        fontSize="1px"
           className="w-4 h-4"
           style={{ color: selectedColor }}
         />
-        <span>{personalInfo.portfolio}</span>
+        <span className="text-[8px] md:text-base">{personalInfo.portfolio}</span>
       </div>
     )}
   </div>
@@ -162,17 +166,18 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             {personalInfo?.address && (
   <div>
     <h2
-      className="text-xs md:text-base font-bold mb-3 flex items-start md:items-center gap-1 md:gap-2"
+      className="text-[10px] md:text-base font-bold mb-3 flex items-start md:items-center gap-1 md:gap-2"
       style={{ color: selectedColor }}
     >
       ADDRESS
     </h2>
-    <div className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
+    <div className="flex flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all">
       <PinDrop
+      fontSize="1px"
         className="w-4 h-4"
         style={{ color: selectedColor }}
       />
-      <span>{personalInfo.address}</span>
+      <span className="text-[8px] md:text-base">{personalInfo.address}</span>
     </div>
   </div>
 )}
@@ -182,7 +187,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             {skills && skills.length > 0 && (
               <div>
                 <h2
-                  className="text-sm md:text-base font-bold mb-3"
+                  className="text-[10px] md:text-base font-bold mb-3"
                   style={{ color: selectedColor }}
                 >
                   SKILLS
@@ -197,7 +202,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
                         className="w-1.5 h-1.5 rounded-full"
                         style={{ backgroundColor: selectedColor }}
                       />
-                      <span>{skill}</span>
+                      <span className="text-[8px] md:text-base">{skill}</span>
                     </div>
                   ))}
                 </div>
@@ -208,7 +213,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             {languages && languages.length > 0 && (
   <div>
     <h2
-      className="text-xs md:text-base font-bold mb-3 flex items-center gap-1 md:gap-2"
+      className="text-[10px] md:text-base font-bold mb-3 flex items-center gap-1 md:gap-2"
       style={{ color: selectedColor }}
     >
       LANGUAGES
@@ -217,13 +222,14 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
       {languages.map((lang, idx) => (
         <div
           key={idx}
-          className="flex flex-col md:flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all"
+          className="flex flex-row items-start gap-0 md:gap-2 text-xs md:text-sm break-all"
         >
           <Language
+          fontSize="1px"
             className="w-4 h-4"
             style={{ color: selectedColor }}
           />
-          <span>
+          <span className="text-[8px] md:text-base">
             {lang.language?.charAt(0).toUpperCase() + lang.language?.slice(1)}{" "}
             – {lang.proficiency}
           </span>
@@ -244,7 +250,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             >
               <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
                 <h1
-                  className="text-xl md:text-4xl font-bold"
+                  className="text-lg md:text-4xl font-bold"
                   style={{ color: selectedColor }}
                 >
                   {personalInfo?.firstName} {personalInfo?.lastName}
@@ -258,7 +264,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
               </div>
               {personalInfo?.jobTitle && (
                 <div
-                  className="text-sm md:text-lg font-semibold tracking-widest mt-2"
+                  className="text-xs md:text-lg font-semibold tracking-widest mt-2"
                   style={{ color: selectedColor }}
                 >
                   {personalInfo.jobTitle}
@@ -270,12 +276,12 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             {personalInfo?.jobDesc && (
               <div>
                 <h2
-                  className="text-sm md:text-lg font-bold border-b pb-1 mb-3"
+                  className="text-xs md:text-lg font-bold border-b pb-1 mb-3"
                   style={{ color: selectedColor, borderColor: selectedColor }}
                 >
                   OBJECTIVE
                 </h2>
-                <p className="text-xs md:text-base leading-relaxed">
+                <p className="text-[10px] md:text-base leading-relaxed">
                   {personalInfo.jobDesc}
                 </p>
               </div>
@@ -285,7 +291,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             {experience && experience.length > 0 && (
               <div>
                 <h2
-                  className="text-sm md:text-lg font-bold border-b pb-1 mb-4"
+                  className="text-xs md:text-lg font-bold border-b pb-1 mb-4"
                   style={{ color: selectedColor, borderColor: selectedColor }}
                 >
                   EXPERIENCE
@@ -298,7 +304,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
                       style={{ borderColor: selectedColor + "40" }}
                     >
                       <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1">
-                        <div className="text-xs md:text-base">
+                        <div className="text-[8px] md:text-base">
                           <div className="font-semibold text-gray-800">
                             {exp.company}
                           </div>
@@ -309,12 +315,12 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
                             {exp.position}
                           </div>
                         </div>
-                        <div className="text-xs md:text-sm text-gray-600 font-medium">
+                        <div className="text-[8px] md:text-sm text-gray-600 font-medium">
                           {exp.startDate} – {exp.endDate}
                         </div>
                       </div>
                       {exp.description && (
-                        <div className="mt-2 text-xs md:text-sm text-gray-700 leading-relaxed">
+                        <div className="mt-2 text-[8px] md:text-sm text-gray-700 leading-relaxed">
                           {exp.description}
                         </div>
                       )}
@@ -328,7 +334,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             {education && education.length > 0 && (
               <div>
                 <h2
-                  className="text-sm md:text-lg font-bold border-b pb-1 mb-4"
+                  className="text-xs md:text-lg font-bold border-b pb-1 mb-4"
                   style={{ color: selectedColor, borderColor: selectedColor }}
                 >
                   EDUCATION
@@ -341,23 +347,23 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
                       style={{ borderColor: selectedColor + "40" }}
                     >
                       <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1">
-                        <div className="text-xs md:text-base">
+                        <div className="text-[8px] md:text-base">
                           <div className="font-semibold text-gray-800">
                             {edu.institution}
                           </div>
                           <div
-                            className="font-medium"
+                            className="font-medium text-[8px] md:text-base"
                             style={{ color: selectedColor }}
                           >
                             {edu.degree}, {edu.field}
                           </div>
                         </div>
-                        <div className="text-xs md:text-sm text-gray-600 font-medium">
+                        <div className="text-[9px] md:text-sm text-gray-600 font-medium">
                           {edu.startDate} - {edu.endDate}
                         </div>
                       </div>
                       {edu.description && (
-                        <div className="mt-2 text-xs md:text-sm text-gray-700 leading-relaxed">
+                        <div className="mt-2 text-[8px] md:text-sm text-gray-700 leading-relaxed">
                           {edu.description}
                         </div>
                       )}
@@ -371,7 +377,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
             {projects && projects.length > 0 && (
               <div>
                 <h2
-                  className="text-sm md:text-lg font-bold border-b pb-1 mb-4"
+                  className="text-xs md:text-lg font-bold border-b pb-1 mb-4"
                   style={{ color: selectedColor, borderColor: selectedColor }}
                 >
                   PROJECTS
@@ -383,16 +389,16 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
                       className="border-l-2 pl-4 pb-4"
                       style={{ borderColor: selectedColor + "40" }}
                     >
-                      <div className="text-xs md:text-base font-semibold text-gray-800 mb-2">
+                      <div className="text-[8px] md:text-base font-semibold text-gray-800 mb-2">
                         {proj.name}
                       </div>
                       {proj.description && (
-                        <div className="text-xs md:text-sm text-gray-700 leading-relaxed mb-2">
+                        <div className="text-[8px] md:text-sm text-gray-700 leading-relaxed mb-2">
                           {proj.description}
                         </div>
                       )}
                       {proj.technologies && (
-                        <div className="text-xs md:text-sm mb-2">
+                        <div className="text-[8px] md:text-sm mb-2">
                           <strong style={{ color: selectedColor }}>
                             Tech:
                           </strong>{" "}
@@ -404,7 +410,7 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
                         </div>
                       )}
                       {proj.link && (
-                        <div className="text-xs md:text-sm">
+                        <div className="text-[8px] md:text-sm">
                           <strong style={{ color: selectedColor }}>
                             Link:
                           </strong>{" "}

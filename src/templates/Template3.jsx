@@ -87,7 +87,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-sans">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-xs md:max-w-5xl mx-auto">
         <div
           ref={componentRef}
           className="bg-white shadow-2xl rounded-2xl overflow-hidden relative"
@@ -97,9 +97,9 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
         >
           {/* Elegant Header with Gradient */}
           <div 
-            className="relative h-64 md:h-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 overflow-hidden"
+            className="relative h-40 md:h-64 md:h-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 overflow-hidden"
             style={{
-              background: `linear-gradient(135deg, ${selectedColor}15 0%, ${selectedColor}25 50%, ${selectedColor}15 100%)`
+              background: `linear-gradient(135deg, 15 0%, 25 50%, 15 100%)`
             }}
           >
             {/* Decorative Elements */}
@@ -120,7 +120,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                   </div>
                   
                   <h1 
-                    className="text-3xl md:text-6xl font-bold text-white leading-tight tracking-tight"
+                    className="text-xl md:text-6xl font-bold text-white leading-tight tracking-tight"
                     style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}
                   >
                     {personalInfo?.firstName}
@@ -129,7 +129,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                   </h1>
                   
                   <div 
-                    className="text-lg md:text-xl font-medium text-white opacity-90 tracking-wide"
+                    className="text-base md:text-xl font-medium text-white opacity-90 tracking-wide"
                     style={{ color: selectedColor }}
                   >
                     {personalInfo?.jobTitle}
@@ -150,66 +150,66 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
           </div>
 
           {/* Main Content */}
-          <div className="flex flex-col lg:flex-row">
+          <div className="flex flex-row">
             {/* Left Sidebar - Premium Dark Theme */}
-            <div className="w-2/5 bg-gray-900 text-white p-8 md:p-10 space-y-8">
+            <div className="w-2/5 bg-gray-900 text-white p-3 md:p-10 space-y-3">
               {/* Contact Information */}
               <section className="space-y-6">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                <h3 className="text-[10px] md:text-xl font-bold text-white mb-6 flex items-center gap-3">
                   <div 
                     className="w-8 h-8 rounded-lg flex items-center justify-center"
                     style={{ backgroundColor: selectedColor }}
                   >
-                    <Email className="text-white text-lg" />
+                   <Email className="text-white" fontSize="inherit" />
                   </div>
                   CONTACT
                 </h3>
                 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {personalInfo?.address && (
                     <div className="flex items-start gap-4 group cursor-pointer hover:translate-x-2 transition-transform duration-300">
                       <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
-                        <PinDrop style={{ color: selectedColor }} className="text-lg" />
+                        <PinDrop fontSize="inherit" style={{ color: selectedColor }} className="text-lg" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-300 leading-relaxed">{personalInfo.address}</p>
+                        <p className="text-[8px] md:text-sm text-gray-300 leading-relaxed">{personalInfo.address}</p>
                       </div>
                     </div>
                   )}
                   
                   {personalInfo?.phone && (
-                    <div className="flex items-center gap-4 group cursor-pointer hover:translate-x-2 transition-transform duration-300">
+                    <div className="flex items-start gap-4 group cursor-pointer hover:translate-x-2 transition-transform duration-300">
                       <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
-                        <Phone style={{ color: selectedColor }} className="text-lg" />
+                        <Phone fontSize="inherit" style={{ color: selectedColor }} className="text-lg" />
                       </div>
-                      <p className="text-sm text-gray-300">{personalInfo.phone}</p>
-                    </div>
-                  )}
-                  
-                  {personalInfo?.email && (
-                    <div className="flex items-center gap-4 group cursor-pointer hover:translate-x-2 transition-transform duration-300">
-                      <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
-                        <Email style={{ color: selectedColor }} className="text-lg" />
-                      </div>
-                      <p className="text-sm text-gray-300">{personalInfo.email}</p>
-                    </div>
-                  )}
-                  
-                  {personalInfo?.linkedIn && (
-                    <div className="flex items-center gap-4 group cursor-pointer hover:translate-x-2 transition-transform duration-300">
-                      <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
-                        <LinkedIn style={{ color: selectedColor }} className="text-lg" />
-                      </div>
-                      <p className="text-sm text-gray-300">{personalInfo.linkedIn}</p>
+                      <p className="text-[8px] md:text-sm text-gray-300">{personalInfo.phone}</p>
                     </div>
                   )}
                   
                   {personalInfo?.portfolio && (
                     <div className="flex items-center gap-4 group cursor-pointer hover:translate-x-2 transition-transform duration-300">
                       <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
-                        <Language style={{ color: selectedColor }} className="text-lg" />
+                        <Language fontSize="inherit" style={{ color: selectedColor }} className="text-lg" />
                       </div>
-                      <p className="text-sm text-gray-300">{personalInfo.portfolio}</p>
+                      <p className="text-[8px] md:text-sm text-gray-300">{personalInfo.portfolio}</p>
+                    </div>
+                  )}
+
+                  {personalInfo?.email && (
+                    <div className="flex items-center gap-4 group cursor-pointer hover:translate-x-2 transition-transform duration-300">
+                      <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
+                        <Email fontSize="inherit" style={{ color: selectedColor }} className="text-lg" />
+                      </div>
+                      <p className="text-[6px] md:text-sm text-gray-300">{personalInfo.email}</p>
+                    </div>
+                  )}
+                  
+                  {personalInfo?.linkedIn && (
+                    <div className="flex items-start gap-4 group cursor-pointer hover:translate-x-2 transition-transform duration-300">
+                      <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
+                        <LinkedIn fontSize="inherit" style={{ color: selectedColor }} className="text-lg" />
+                      </div>
+                      <p className="text-[6px] md:text-sm text-gray-300">{personalInfo.linkedIn}</p>
                     </div>
                   )}
                 </div>
@@ -218,17 +218,17 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
               {/* Objective */}
               {personalInfo?.jobDesc && (
                 <section className="space-y-4">
-                  <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                  <h3 className="text-[10px] md:text-xl font-bold text-white mb-4 flex items-center gap-3">
                     <div 
                       className="w-8 h-8 rounded-lg flex items-center justify-center"
                       style={{ backgroundColor: selectedColor }}
                     >
-                      <div className="w-3 h-3 bg-white rounded-full"></div>
+                      <div className="w-1 md:w-3 h-1 md:h-3 bg-white rounded-full"></div>
                     </div>
                     OBJECTIVE
                   </h3>
                   <div className="pl-11">
-                    <p className="text-sm text-gray-300 leading-relaxed italic">
+                    <p className="text-[8px] md:text-sm text-gray-300 leading-relaxed italic">
                       "{personalInfo.jobDesc}"
                     </p>
                   </div>
@@ -238,12 +238,12 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
               {/* Skills */}
               {skills && skills.length > 0 && (
                 <section className="space-y-4">
-                  <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                  <h3 className="text-[10px] md:text-xl font-bold text-white mb-6 flex items-center gap-3">
                     <div 
                       className="w-8 h-8 rounded-lg flex items-center justify-center"
                       style={{ backgroundColor: selectedColor }}
                     >
-                      <div className="w-4 h-4 bg-white rounded-sm"></div>
+                      <div className="w-2 md:w-4 h-2 md:h-4 bg-white rounded-sm"></div>
                     </div>
                     SKILLS
                   </h3>
@@ -254,7 +254,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                           className="w-2 h-2 rounded-full group-hover:w-4 transition-all duration-300"
                           style={{ backgroundColor: selectedColor }}
                         ></div>
-                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                        <span className="text-[8px] md:text-sm text-gray-300 group-hover:text-white transition-colors">
                           {skill}
                         </span>
                       </div>
@@ -266,22 +266,19 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
               {/* Languages */}
               {languages && languages.length > 0 && (
                 <section className="space-y-4">
-                  <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                  <h3 className="text-[10px] md:text-xl font-bold text-white mb-6 flex items-center gap-3">
                     <div 
                       className="w-8 h-8 rounded-lg flex items-center justify-center"
                       style={{ backgroundColor: selectedColor }}
                     >
-                      <Language className="text-white text-lg" />
+                      <Language fontSize="inherit" className="text-white text-lg" />
                     </div>
                     LANGUAGES
                   </h3>
                   <div className="space-y-3 pl-11">
                     {languages.map((lang, idx) => (
                       <div key={idx} className="flex justify-between items-center group">
-                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
-                          {lang.language?.charAt(0).toUpperCase() + lang.language?.slice(1)}
-                        </span>
-                        <span className="text-xs px-2 py-1 rounded-full bg-gray-800 text-gray-300 group-hover:bg-gray-700 transition-colors">
+                        <span className="text-[8px] md:text-xs px-2 py-1 rounded-full bg-gray-800 text-gray-300 group-hover:bg-gray-700 transition-colors">
                           {lang.proficiency}
                         </span>
                       </div>
@@ -292,7 +289,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
             </div>
 
             {/* Right Content - Clean White Space */}
-            <div className="w-3/5 p-8 md:p-12 space-y-12">
+            <div className="w-3/5 p-8 md:p-12 space-y-6">
               {/* Experience */}
               {experience && experience.length > 0 && (
                 <section className="space-y-8">
@@ -306,7 +303,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                         style={{ backgroundColor: selectedColor }}
                       ></div>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-800">EXPERIENCE</h3>
+                    <h3 className="text-[10px] md:text-2xl font-bold text-gray-800">EXPERIENCE</h3>
                     <div className="flex-1 h-px bg-gray-200"></div>
                   </div>
                   
@@ -322,10 +319,10 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                         <div className="pl-8 space-y-3">
                           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
                             <div>
-                              <h4 className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
+                              <h4 className="text-[8px] md:text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
                                 {exp.position}
                               </h4>
-                              <p className="text-base font-medium" style={{ color: selectedColor }}>
+                              <p className="text-[8px] md:text-base font-medium" style={{ color: selectedColor }}>
                                 {exp.company}
                               </p>
                             </div>
@@ -334,12 +331,12 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                                 className="w-2 h-2 rounded-full"
                                 style={{ backgroundColor: selectedColor }}
                               ></div>
-                              <span className="text-sm text-gray-500 font-medium">
+                              <span className="text-[5px] md:text-sm text-gray-500 font-medium">
                                 {exp.startDate} - {exp.endDate}
                               </span>
                             </div>
                           </div>
-                          <p className="text-sm text-gray-600 leading-relaxed pl-4 border-l-2 border-gray-100">
+                          <p className="text-[8px] md:text-sm text-gray-600 leading-relaxed pl-4 border-l-2 border-gray-100">
                             {exp.description}
                           </p>
                         </div>
@@ -351,18 +348,18 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
 
               {/* Education */}
               {education && education.length > 0 && (
-                <section className="space-y-8">
+                <section className="space-y-2">
                   <div className="flex items-center gap-4 mb-8">
                     <div 
                       className="w-12 h-12 rounded-xl flex items-center justify-center"
                       style={{ backgroundColor: selectedColor + '15' }}
                     >
                       <div 
-                        className="w-6 h-6 rounded-full border-2"
+                        className="w-3 md:w-6 h-3 md:h-6 rounded-full border-2"
                         style={{ borderColor: selectedColor }}
                       ></div>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-800">EDUCATION</h3>
+                    <h3 className="text-[10px] md:text-2xl font-bold text-gray-800">EDUCATION</h3>
                     <div className="flex-1 h-px bg-gray-200"></div>
                   </div>
                   
@@ -378,10 +375,10 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                         <div className="pl-8 space-y-2">
                           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
                             <div>
-                              <h4 className="text-lg font-bold text-gray-800">
+                              <h4 className="text-[8px] md:text-lg font-bold text-gray-800">
                                 {edu.degree}
                               </h4>
-                              <p className="text-base font-medium" style={{ color: selectedColor }}>
+                              <p className="text-[8px] md:text-base font-medium" style={{ color: selectedColor }}>
                                 {edu.institution}
                               </p>
                             </div>
@@ -390,13 +387,13 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                                 className="w-2 h-2 rounded-full"
                                 style={{ backgroundColor: selectedColor }}
                               ></div>
-                              <span className="text-sm text-gray-500 font-medium">
+                              <span className="text-[8px] md:text-sm text-gray-500 font-medium">
                                 {edu.startDate} - {edu.endDate}
                               </span>
                             </div>
                           </div>
                           {edu.description && (
-                            <p className="text-sm text-gray-600 leading-relaxed pl-4 border-l-2 border-gray-100">
+                            <p className="text-[8px] md:text-sm text-gray-600 leading-relaxed pl-4 border-l-2 border-gray-100">
                               {edu.description}
                             </p>
                           )}
@@ -420,7 +417,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                         style={{ backgroundColor: selectedColor }}
                       ></div>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-800">PROJECTS</h3>
+                    <h3 className="text-[10px] md:text-2xl font-bold text-gray-800">PROJECTS</h3>
                     <div className="flex-1 h-px bg-gray-200"></div>
                   </div>
                   
@@ -430,7 +427,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                         <div className="relative p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-300 hover:shadow-lg">
                           <div className="space-y-4">
                             <div className="flex items-start justify-between gap-4">
-                              <h4 className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
+                              <h4 className="text-[8px] md:text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
                                 {proj.name}
                               </h4>
                               <div 
@@ -444,7 +441,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                               </div>
                             </div>
                             
-                            <p className="text-sm text-gray-600 leading-relaxed">
+                            <p className="text-[8px] md:text-sm text-gray-600 leading-relaxed">
                               {proj.description}
                             </p>
                             
@@ -452,7 +449,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                               {(Array.isArray(proj.technologies) ? proj.technologies : [proj.technologies]).map((tech, techIdx) => (
                                 <span 
                                   key={techIdx}
-                                  className="px-3 py-1 text-xs font-medium rounded-full bg-white text-gray-700 border border-gray-200"
+                                  className="px-3 py-1 text-[8px] md:text-xs font-medium rounded-full bg-white text-gray-700 border border-gray-200"
                                 >
                                   {tech}
                                 </span>
@@ -465,7 +462,7 @@ const ResumeTemplateThree = ({ formData, selectedColor }) => {
                                   href={proj.link}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="inline-flex items-center gap-2 text-sm font-medium hover:underline transition-colors"
+                                  className="inline-flex items-center gap-2 text-[8px] md:text-sm font-medium hover:underline transition-colors"
                                   style={{ color: selectedColor }}
                                 >
                                   View Project

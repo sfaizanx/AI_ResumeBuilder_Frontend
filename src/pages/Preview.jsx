@@ -54,11 +54,10 @@ const Preview = ({ formData, selectedColor, setSelectedColor }) => {
       {selectedTemplate ? (
         <Box className="flex flex-row lg:flex-row gap-1">
           {/* Resume Preview Section */}
-          <Box className="flex-1">
               <Card
                 id="resume-content"
                 sx={{
-                  p: 4,
+                  p: 0,
                   boxShadow: 3,
                   borderRadius: 4,
                   position: "relative",
@@ -185,7 +184,6 @@ const Preview = ({ formData, selectedColor, setSelectedColor }) => {
               </Box>
             </Box>
           </Box>
-        </Box>
       ) : (
         <Box textAlign="center" sx={{ maxWidth: 800, mx: "auto" }}>
           <Box

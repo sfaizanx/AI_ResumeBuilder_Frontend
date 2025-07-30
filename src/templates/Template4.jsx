@@ -89,14 +89,14 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
       {href ? (
         <a 
           href={href} 
-          className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
+          className="text-gray-600 hover:text-gray-900 transition-colors text-[6px] md:text-sm font-medium"
           target="_blank"
           rel="noopener noreferrer"
         >
           {text}
         </a>
       ) : (
-        <span className="text-gray-600 text-sm font-medium">{text}</span>
+        <span className="text-gray-600 text-[6px] md:text-sm font-medium">{text}</span>
       )}
     </div>
   );
@@ -104,13 +104,13 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
   const SectionHeader = ({ title, accent = false }) => (
     <div className="mb-6">
       <h2 
-        className={`text-lg font-bold uppercase tracking-wide ${accent ? 'text-white' : 'text-gray-900'}`}
+        className={`text-[10px] md:text-lg font-bold uppercase tracking-wide ${accent ? 'text-white' : 'text-gray-900'}`}
         style={accent ? { color: selectedColor } : {}}
       >
         {title}
       </h2>
       <div 
-        className="w-12 h-0.5 mt-2 rounded-full"
+        className="w-6 md:w-12 h-0.5 mt-2 rounded-full"
         style={{ backgroundColor: selectedColor }}
       />
     </div>
@@ -119,12 +119,12 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
   const SkillBadge = ({ skill, level }) => (
     <div className="mb-3">
       <div className="flex justify-between items-center mb-1">
-        <span className="text-sm font-medium text-gray-700">{skill}</span>
-        {level && <span className="text-xs text-gray-500">{level}</span>}
+        <span className="text-[8px] md:text-sm font-medium text-gray-700">{skill}</span>
+        {level && <span className="text-[8px] md:text-xs text-gray-500">{level}</span>}
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-1.5">
+      <div className="w-full bg-gray-200 rounded-full h-0.5 md:h-1.5">
         <div 
-          className="h-1.5 rounded-full transition-all duration-300"
+          className="h-0.5 md:h-1.5 rounded-full transition-all duration-300"
           style={{ 
             backgroundColor: selectedColor,
             width: level ? `${level}%` : '85%'
@@ -136,26 +136,26 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
 
   return (
     <div className="relative min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+      <div className="max-w-sm md:max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         <div
           ref={componentRef}
           className="bg-white text-gray-900 font-sans leading-relaxed"
         >
           {/* Header Section */}
           <div 
-            className="relative px-8 py-12 text-white"
+            className="relative px-8 py-6 md:py-12 text-white"
             style={{ 
               background: `linear-gradient(135deg, ${selectedColor} 0%, ${selectedColor}dd 100%)` 
             }}
           >
             <div className="relative z-10">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
+              <h1 className="text-[10px] md:text-4xl md:text-5xl font-bold mb-2">
                 {personalInfo.firstName} {personalInfo.lastName}
               </h1>
-              <p className="text-xl md:text-2xl font-light opacity-90 mb-4">
+              <p className="text-[10px] md:text-xl md:text-2xl font-light opacity-90 mb-4">
                 {personalInfo.jobTitle}
               </p>
-              <div className="w-20 h-1 bg-white bg-opacity-60 rounded-full" />
+              <div className="w-10 md:w-20 h-0.5 md:h-1 bg-white bg-opacity-60 rounded-full" />
             </div>
             <div className="absolute inset-0 bg-black bg-opacity-10" />
           </div>
@@ -171,34 +171,34 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
                 <div className="space-y-4">
                   {personalInfo.email && (
                     <ContactItem 
-                      icon={<Email className="w-4 h-4" />}
+                      icon={<Email fontSize="inherit" className="w-4 h-4" />}
                       text={personalInfo.email}
                       href={`mailto:${personalInfo.email}`}
                     />
                   )}
                   {personalInfo.phone && (
                     <ContactItem 
-                      icon={<Phone className="w-4 h-4" />}
+                      icon={<Phone fontSize="inherit" className="w-4 h-4" />}
                       text={personalInfo.phone}
                       href={`tel:${personalInfo.phone}`}
                     />
                   )}
                   {personalInfo.address && (
                     <ContactItem 
-                      icon={<PinDrop className="w-4 h-4" />}
+                      icon={<PinDrop fontSize="inherit" className="w-4 h-4" />}
                       text={personalInfo.address}
                     />
                   )}
                   {personalInfo.linkedIn && (
                     <ContactItem 
-                      icon={<LinkedIn className="w-4 h-4" />}
+                      icon={<LinkedIn fontSize="inherit" className="w-4 h-4" />}
                       text={personalInfo.linkedIn}
                       href={personalInfo.linkedIn}
                     />
                   )}
                   {personalInfo.portfolio && (
                     <ContactItem 
-                      icon={<Language className="w-4 h-4" />}
+                      icon={<Language fontSize="inherit" className="w-4 h-4" />}
                       text="Portfolio Website"
                       href={personalInfo.portfolio}
                     />
@@ -210,7 +210,7 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
               {personalInfo.jobDesc && (
                 <div className="mb-8">
                   <SectionHeader title="Professional Summary" />
-                  <p className="text-gray-700 text-sm leading-relaxed">
+                  <p className="text-gray-700 text-[8px] md:text-sm leading-relaxed">
                     {personalInfo.jobDesc}
                   </p>
                 </div>
@@ -235,30 +235,12 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
                   <div className="space-y-3">
                     {languages.map((lang, idx) => (
                       <div key={idx} className="flex justify-between items-center">
-                        <span className="text-gray-700 font-medium text-sm">
+                        <span className="text-gray-700 font-medium text-[8px] md:text-sm">
                           {lang.language?.charAt(0).toUpperCase() + lang.language?.slice(1)}
                         </span>
-                        <span className="text-xs text-gray-500 font-medium">
+                        <span className="text-[8px] md:text-xs text-gray-500 font-medium">
                           {lang.proficiency}
                         </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Certifications */}
-              {certifications.length > 0 && (
-                <div className="mb-8">
-                  <SectionHeader title="Certifications" />
-                  <div className="space-y-3">
-                    {certifications.map((cert, idx) => (
-                      <div key={idx} className="text-sm">
-                        <p className="font-medium text-gray-700">{cert.name}</p>
-                        <p className="text-gray-500 text-xs">{cert.issuer}</p>
-                        {cert.date && (
-                          <p className="text-gray-500 text-xs">{cert.date}</p>
-                        )}
                       </div>
                     ))}
                   </div>
@@ -281,18 +263,18 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
                         />
                         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
                           <div>
-                            <h3 className="font-bold text-lg text-gray-900">
+                            <h3 className="font-bold text-[8px] md:text-lg text-gray-900">
                               {exp.position}
                             </h3>
-                            <p className="text-gray-600 font-medium">
+                            <p className="text-gray-600 font-medium text-[8px] md:text-sm">
                               {exp.company}
                             </p>
                           </div>
-                          <div className="text-sm text-gray-500 font-medium mt-1 md:mt-0">
+                          <div className="text-[8px] md:text-sm text-gray-500 font-medium mt-1 md:mt-0">
                             {exp.startDate} - {exp.endDate}
                           </div>
                         </div>
-                        <p className="text-gray-700 text-sm leading-relaxed">
+                        <p className="text-gray-700 text-[8px] md:text-sm leading-relaxed">
                           {exp.description}
                         </p>
                       </div>
@@ -314,19 +296,19 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
                         />
                         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
                           <div>
-                            <h3 className="font-bold text-lg text-gray-900">
+                            <h3 className="font-bold text-[8px] md:text-lg text-gray-900">
                               {edu.degree}
                             </h3>
-                            <p className="text-gray-600 font-medium">
+                            <p className="text-gray-600 font-medium text-[8px] md:text-sm">
                               {edu.institution}
                             </p>
                           </div>
-                          <div className="text-sm text-gray-500 font-medium mt-1 md:mt-0">
+                          <div className="text-[8px] md:text-sm text-gray-500 font-medium mt-1 md:mt-0">
                             {edu.startDate} - {edu.endDate}
                           </div>
                         </div>
                         {edu.description && (
-                          <p className="text-gray-700 text-sm leading-relaxed">
+                          <p className="text-gray-700 text-[8px] md:text-sm leading-relaxed">
                             {edu.description}
                           </p>
                         )}
@@ -347,18 +329,18 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
                           className="absolute -left-2 w-4 h-4 rounded-full border-2 border-white"
                           style={{ backgroundColor: selectedColor }}
                         />
-                        <h3 className="font-bold text-lg text-gray-900 mb-2">
+                        <h3 className="font-bold text-[8px] md:text-lg text-gray-900 mb-2">
                           {proj.name}
                         </h3>
-                        <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                        <p className="text-gray-700 text-[8px] md:text-sm leading-relaxed mb-3">
                           {proj.description}
                         </p>
                         {proj.technologies && (
                           <div className="mb-2">
-                            <span className="text-gray-600 font-medium text-sm">
+                            <span className="text-gray-600 font-medium text-[8px] md:text-sm">
                               Technologies: 
                             </span>
-                            <span className="text-gray-500 text-sm ml-1">
+                            <span className="text-gray-500 text-[8px] md:text-sm ml-1">
                               {proj.technologies}
                             </span>
                           </div>
@@ -366,7 +348,7 @@ const ResumeTemplateFour = ({ formData, selectedColor = "#2563eb" }) => {
                         {proj.link && (
                           <a
                             href={proj.link}
-                            className="inline-flex items-center gap-1 text-sm font-medium hover:underline transition-colors"
+                            className="inline-flex items-center gap-1 text-[8px] md:text-sm font-medium hover:underline transition-colors"
                             style={{ color: selectedColor }}
                             target="_blank"
                             rel="noopener noreferrer"
