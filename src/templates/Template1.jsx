@@ -62,40 +62,57 @@ const EnhancedTemplate1 = ({ formData, selectedColor = "#2563eb" }) => {
   const { tokenVal, handleOpen } = useAuth();
 
   const handlePrint = async () => {
-    try {
-      const res = await axios.get(`${BASE_URL}/auth/Validtoken`, {
-        headers: {
-          Authorization: `Bearer ${tokenVal}`,
-        },
-      });
+  try {
+    const res = await axios.get(`${BASE_URL}/auth/Validtoken`, {
+      headers: {
+        Authorization: `Bearer ${tokenVal}`,
+      },
+    });
 
-      if (res.data?.success) {
-        const dataUrl = await toPng(componentRef.current, {
-          quality: 1.0,
-          pixelRatio: 2,
-          backgroundColor: "#ffffff",
-        });
-
-        const pdf = new jsPDF("p", "mm", "a4");
-        const imgProps = pdf.getImageProperties(dataUrl);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-        pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save(
-          `${personalInfo.firstName || "resume"}_${personalInfo.lastName || "professional"}.pdf`
-        );
-      } else {
-        toast.info("Please login to print your resume");
-        handleOpen();
-      }
-    } catch (err) {
+    if (!res.data?.success) {
+      toast.info("Please login to print your resume");
       handleOpen();
-      toast.info(
-        "Session Expired or Invalid please login to print your resume"
-      );
+      return;
     }
-  };
+
+    const node = componentRef.current;
+    if (!node) return;
+
+    // Save original styles
+    const originalWidth = node.style.width;
+    const originalPadding = node.style.padding;
+
+    // Dynamically set export width based on screen size
+    const isMobile = window.innerWidth < 768; // Tailwind's 'md' breakpoint
+    node.style.width = isMobile ? "500px" : "800px";
+    node.style.padding = "0px";
+
+    // Export to image
+    const dataUrl = await toPng(node, {
+      quality: 1.0,
+      pixelRatio: 2,
+      backgroundColor: "#ffffff",
+      cacheBust: true,
+    });
+
+    // Generate PDF
+    const pdf = new jsPDF("p", "mm", "a4");
+    const imgProps = pdf.getImageProperties(dataUrl);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save(`${personalInfo.firstName || "resume"}_${personalInfo.lastName || "pdf"}.pdf`);
+
+    // Restore original styles
+    node.style.width = originalWidth;
+    node.style.padding = originalPadding;
+  } catch (err) {
+    toast.info("Session Expired or Invalid, please login to print your resume");
+    handleOpen();
+  }
+};
+
 
   const ContactItem = ({ icon, text, href, selectedColor = "#000" }) => (
     <div className="flex items-center gap-2 sm:gap-3 mb-2 group flex-wrap">
@@ -154,7 +171,7 @@ const EnhancedTemplate1 = ({ formData, selectedColor = "#2563eb" }) => {
             className="relative bg-white border-b-4"
             style={{ borderColor: selectedColor }}
           >
-            <div className="px-8 py-12">
+            <div className="px-8 py-6 md:py-12">
               <div className="max-w-4xl mx-auto">
                 <div className="flex items-center gap-6 mb-6">
                   <div
@@ -169,7 +186,7 @@ const EnhancedTemplate1 = ({ formData, selectedColor = "#2563eb" }) => {
                       {personalInfo.firstName} {personalInfo.lastName}
                     </h1>
                     <h2
-                      className="text-xs md:text-2xl font-semibold mb-4"
+                      className="text-xs md:text-2xl font-semibold mb-2"
                       style={{ color: selectedColor }}
                     >
                       {personalInfo.jobTitle}
@@ -177,7 +194,7 @@ const EnhancedTemplate1 = ({ formData, selectedColor = "#2563eb" }) => {
                   </div>
                 </div>
                 <div
-                  className="bg-gray-50 rounded-lg p-6 border-l-4"
+                  className="bg-gray-50 rounded-lg p-3 md:p-6 border-l-4"
                   style={{ borderColor: selectedColor }}
                 >
                   <p className="text-gray-700 text-[8px] md:text-base leading-relaxed">
@@ -189,11 +206,11 @@ const EnhancedTemplate1 = ({ formData, selectedColor = "#2563eb" }) => {
           </div>
 
           {/* Main Content */}
-          <div className="px-8 py-8">
+          <div className="px-8 py-4 md:py-8">
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-2 gap-2 md:gap-12">
                 {/* Left Column */}
-                <div className="space-y-8">
+                <div className="space-y-4 md:space-y-8">
                   {/* Contact Section */}
                   <section>
                     <SectionHeader title="Contact" />

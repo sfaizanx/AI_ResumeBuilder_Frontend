@@ -66,13 +66,22 @@ const ResumeTemplateTwo = ({ formData, selectedColor }) => {
 
       if (res.data?.success) {
         const node = componentRef.current;
+
+        // Set width based on screen size
+      if (window.innerWidth >= 768) {
+        // Large screens
         node.style.width = "800px";
-        node.style.padding = "32px";
-        node.style.background = "white";
+      } else {
+        // Small screens
+        node.style.width = "500px";
+      }
+      
+        node.style.padding = "0px";
+//        node.style.background = "white";
 
         const dataUrl = await toPng(node, {
           quality: 1.0,
-          pixelRatio: 2,
+          pixelRatio: 3,
           cacheBust: true,
         });
 

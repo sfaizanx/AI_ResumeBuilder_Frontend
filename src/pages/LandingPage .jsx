@@ -229,7 +229,7 @@ const LandingPage = ({ setTokenId }) => {
             {/* Templates Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {templatesToShow?.map((template) => (
-                <Card sx={{ maxWidth: 340 }} key={template.id}>
+                <Card sx={{ maxWidth: 340 }} key={template.id} onClick={() => navigate(`/aibuilder/${template.id}`)}>
                   <div className="relative overflow-hidden">
                     {/* Template Preview */}
                     <div className="cursor-pointer md:transform scale-[0.36] origin-top-left w-227 h-75 mx-auto pt-4">
