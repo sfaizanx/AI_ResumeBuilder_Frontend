@@ -37,14 +37,11 @@ import SvgGuides from "../components/SvgGuides";
 import ATSScoreLanding from "../components/AtsScoreLanding";
 import ResumeTemplateFour from "../templates/Template4";
 
-
-
 const LandingPage = ({ setTokenId }) => {
   const [previewId, setPreviewId] = useState(null);
   const [showAllTemplates, setShowAllTemplates] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
-  
 
   useEffect(() => {
     if (id) {
@@ -187,8 +184,6 @@ const LandingPage = ({ setTokenId }) => {
 
   const templatesToShow = showAllTemplates ? templates : templates.slice(0, 3);
 
-
-
   const Cards = () => {
     return (
       <main className="flex-grow flex-col bg-gray-50">
@@ -229,11 +224,16 @@ const LandingPage = ({ setTokenId }) => {
             {/* Templates Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {templatesToShow?.map((template) => (
-                <Card sx={{ maxWidth: 340 }} key={template.id} onClick={() => {
-    if (window.innerWidth <= 768) { // only trigger on small screens
-      navigate(`/aibuilder/${template.id}`);
-    }
-  }}>
+                <Card
+                  sx={{ maxWidth: 340 }}
+                  key={template.id}
+                  onClick={() => {
+                    if (window.innerWidth <= 768) {
+                      // only trigger on small screens
+                      navigate(`/aibuilder/${template.id}`);
+                    }
+                  }}
+                >
                   <div className="relative overflow-hidden">
                     {/* Template Preview */}
                     <div className="cursor-pointer md:transform scale-[0.36] origin-top-left w-227 h-75 mx-auto pt-4">
@@ -313,11 +313,13 @@ const LandingPage = ({ setTokenId }) => {
               </p>
 
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
-                <button onClick={() => { 
-                  const section = document.querySelector('#resumes');
-                  section?.scrollIntoView({behaviour: "smooth"})
-                }} 
-                className="bg-white text-indigo-700 hover:bg-indigo-50 px-4 py-2 sm:px-6 sm:py-3 rounded-button shadow-md font-medium text-sm sm:text-lg flex items-center justify-center whitespace-nowrap">
+                <button
+                  onClick={() => {
+                    const section = document.querySelector("#resumes");
+                    section?.scrollIntoView({ behaviour: "smooth" });
+                  }}
+                  className="bg-white text-indigo-700 hover:bg-indigo-50 px-4 py-2 sm:px-6 sm:py-3 rounded-button shadow-md font-medium text-sm sm:text-lg flex items-center justify-center whitespace-nowrap"
+                >
                   <AutoAwesome className="mr-2" fontSize="small" />
                   Build My Resume
                 </button>
@@ -372,9 +374,9 @@ const LandingPage = ({ setTokenId }) => {
         </div>
       </section>
 
-        {/* ATSLandingCTA */}
+      {/* ATSLandingCTA */}
       <section className="py-10 bg-white">
-      <ATSScoreLanding />
+        <ATSScoreLanding />
       </section>
 
       {/* Features Section*/}
@@ -390,7 +392,10 @@ const LandingPage = ({ setTokenId }) => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            data-aos="fade-up"
+          >
             {features.map((feature) => (
               <div
                 key={feature.id}
@@ -523,7 +528,9 @@ const LandingPage = ({ setTokenId }) => {
       </section>
 
       {/* Display Templates */}
-      <section id="resumes" data-aos="zoom-in-up">{Cards(templates)}</section>
+      <section id="resumes" data-aos="zoom-in-up">
+        {Cards(templates)}
+      </section>
 
       {/* Testimonials Section and Start Template */}
       <section className="py-20 bg-white" id="testimonials" data-aos="fade-up">
@@ -582,8 +589,11 @@ const LandingPage = ({ setTokenId }) => {
           </div>
 
           {/* CTA Box */}
-          <div className="mt-16 bg-indigo-600 rounded-2xl p-8 md:p-12 text-center" data-aos="fade-up"
-     data-aos-anchor-placement="top-center">
+          <div
+            className="mt-16 bg-indigo-600 rounded-2xl p-8 md:p-12 text-center"
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+          >
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
               Ready to Create Your Professional Resume?
             </h3>
@@ -593,10 +603,10 @@ const LandingPage = ({ setTokenId }) => {
             </p>
             <button
               className="bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-full shadow-lg font-bold text-lg cursor-pointer whitespace-nowrap"
-              onClick={() => { 
-                  const section = document.querySelector('#resumes');
-                  section?.scrollIntoView({behaviour: "smooth"})
-                }} 
+              onClick={() => {
+                const section = document.querySelector("#resumes");
+                section?.scrollIntoView({ behaviour: "smooth" });
+              }}
             >
               Get Started for Free
             </button>
@@ -618,8 +628,11 @@ const LandingPage = ({ setTokenId }) => {
           </div>
 
           {/* FAQ Items */}
-          <div className="space-y-4 font-clash" data-aos="fade-up"
-     data-aos-anchor-placement="top-center">
+          <div
+            className="space-y-4 font-clash"
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+          >
             {faqs.map((faq, index) => (
               <Accordion
                 key={index}
@@ -637,9 +650,7 @@ const LandingPage = ({ setTokenId }) => {
                   id={`faq-header-${index}`}
                   className="px-6 py-4"
                 >
-                  <p className="text-gray-900">
-                    {faq.question}
-                  </p>
+                  <p className="text-gray-900">{faq.question}</p>
                 </AccordionSummary>
                 <AccordionDetails className="px-6 pb-4 pt-0 text-gray-700">
                   <p>{faq.answer}</p>
@@ -649,8 +660,11 @@ const LandingPage = ({ setTokenId }) => {
           </div>
 
           {/* Contact Support CTA */}
-          <div className="mt-12 text-center" data-aos="fade-up"
-     data-aos-anchor-placement="top-center">
+          <div
+            className="mt-12 text-center"
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+          >
             <p className="text-gray-600 mb-4">Still have questions?</p>
             <button className="bg-indigo-100 hover:bg-indigo-200 text-indigo-700 px-6 py-3 rounded-full font-medium transition-all duration-200">
               Contact Support
@@ -715,22 +729,22 @@ const LandingPage = ({ setTokenId }) => {
                 );
               }
               return (
-                  <Box
-                    sx={{
-                      transform: {
-                        xs: "scale(0.7)", // Slightly reduced on mobile
-                        sm: "scale(0.7)", // Full size on tablet+
-                      },
-                      transformOrigin: "center top",
-                      width: "100%",
-                      height: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <template.Component formData={template.data} />
-                  </Box>
+                <Box
+                  sx={{
+                    transform: {
+                      xs: "scale(0.7)", // Slightly reduced on mobile
+                      sm: "scale(0.7)", // Full size on tablet+
+                    },
+                    transformOrigin: "center top",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "10px",
+                  }}
+                >
+                  <template.Component formData={template.data} />
+                </Box>
               );
             })()}
         </Box>
@@ -754,7 +768,6 @@ const LandingPage = ({ setTokenId }) => {
           <Box sx={style}>{Cards()}</Box>
         </Fade>
       </Modal>
-      
     </div>
   );
 };
