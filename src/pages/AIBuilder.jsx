@@ -17,12 +17,15 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import axios from "axios";
 import { BASE_URL } from "../Constant/constant";
 import { useNavigate, useParams } from "react-router-dom";
+import { useResumeData } from "../common/formdata";
 
-const AIBuilder = ({setFormData, setatsAI, setskillsAI, setWorkExperienceAI, setResumeScore}) => {
+const AIBuilder = ({setatsAI, setskillsAI, setWorkExperienceAI, setResumeScore}) => {
   const [input, setInput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const navigate = useNavigate();
   const {id} = useParams();
+
+  const { formData, setFormData } = useResumeData();
 
   const [suggestions, setSuggestions] = useState([
     "Experienced software engineer with 5+ years in web development",

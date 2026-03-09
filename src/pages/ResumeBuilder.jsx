@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Stepper,
-  Step,
-  StepLabel,
   Button,
   Typography,
   TextField,
@@ -15,17 +12,10 @@ import {
   Divider,
   Switch,
   FormControlLabel,
-  Container,
   Box,
   Tooltip,
-  Fab,
-  Zoom,
 } from "@mui/material";
 import {
-  Person,
-  School,
-  Work,
-  Code,
   Star,
   Add,
   Edit,
@@ -34,14 +24,7 @@ import {
   ArrowBack,
   ArrowForward,
   CloudUpload,
-  Visibility,
-  Download,
-  Description,
-  Language,
-  Palette,
-  CheckCircle,
   Computer,
-  Preview,
 } from "@mui/icons-material";
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
@@ -61,10 +44,9 @@ import ResumeTemplateOne from "../templates/Template1";
 import ResumeTemplateTwo from "../templates/Template2";
 import ResumeTemplateThree from "../templates/Template3";
 import ResumeTemplateFour from "../templates/Template4";
+import { useResumeData } from "../common/formdata";
 
 const ResumeBuilder = ({
-  formData,
-  setFormData,
   atsAI,
   skillsAI,
   workExperienceAI,
@@ -72,6 +54,8 @@ const ResumeBuilder = ({
 }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
+  const { formData, setFormData } = useResumeData();
+
   const [editingIndex, setEditingIndex] = useState({
     section: null,
     index: null,
@@ -90,8 +74,8 @@ const ResumeBuilder = ({
   const templates = [
     { id: 1, Component: ResumeTemplateOne, name: "Professional" },
     { id: 2, Component: ResumeTemplateTwo, name: "Modern" },
-    { id: 3, Component: ResumeTemplateThree, name: "Creative" },
-    { id: 4, Component: ResumeTemplateFour, name: "Creative" },
+    { id: 3, Component: ResumeTemplateThree, name: "Minimal" },
+    { id: 4, Component: ResumeTemplateFour, name: "Elegant" },
   ];
 
   useEffect(() => {
@@ -358,7 +342,10 @@ const ResumeBuilder = ({
                   endAdornment: (
                     <InputAdornment position="end" type="button">
                       <IconButton onClick={handlegetTitle}>
-                      <AutoAwesome style={{ color: "blue" }} fontSize= 'small' />
+                        <AutoAwesome
+                          style={{ color: "blue" }}
+                          fontSize="small"
+                        />
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -422,7 +409,7 @@ const ResumeBuilder = ({
                               "education",
                               index,
                               "institution",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           fullWidth
@@ -437,7 +424,7 @@ const ResumeBuilder = ({
                                 "education",
                                 index,
                                 "degree",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             fullWidth
@@ -450,7 +437,7 @@ const ResumeBuilder = ({
                                 "education",
                                 index,
                                 "field",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             fullWidth
@@ -466,7 +453,7 @@ const ResumeBuilder = ({
                                 "education",
                                 index,
                                 "startDate",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             InputLabelProps={{ shrink: true }}
@@ -481,7 +468,7 @@ const ResumeBuilder = ({
                                 "education",
                                 index,
                                 "endDate",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             InputLabelProps={{ shrink: true }}
@@ -498,7 +485,7 @@ const ResumeBuilder = ({
                               "education",
                               index,
                               "description",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           fullWidth
@@ -604,7 +591,7 @@ const ResumeBuilder = ({
                                 "experience",
                                 index,
                                 "company",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             fullWidth
@@ -617,7 +604,7 @@ const ResumeBuilder = ({
                                 "experience",
                                 index,
                                 "position",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             fullWidth
@@ -633,7 +620,7 @@ const ResumeBuilder = ({
                                 "experience",
                                 index,
                                 "startDate",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             InputLabelProps={{ shrink: true }}
@@ -648,7 +635,7 @@ const ResumeBuilder = ({
                                 "experience",
                                 index,
                                 "endDate",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             InputLabelProps={{ shrink: true }}
@@ -665,7 +652,7 @@ const ResumeBuilder = ({
                                   "experience",
                                   index,
                                   "current",
-                                  e.target.checked
+                                  e.target.checked,
                                 )
                               }
                             />
@@ -682,7 +669,7 @@ const ResumeBuilder = ({
                               "experience",
                               index,
                               "description",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           fullWidth
@@ -861,7 +848,7 @@ const ResumeBuilder = ({
                               "projects",
                               index,
                               "name",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           fullWidth
@@ -874,7 +861,7 @@ const ResumeBuilder = ({
                               "projects",
                               index,
                               "technologies",
-                              e.target.value
+                              e.target.value,
                             );
                           }}
                         />
@@ -886,7 +873,7 @@ const ResumeBuilder = ({
                               "projects",
                               index,
                               "link",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           fullWidth
@@ -908,7 +895,7 @@ const ResumeBuilder = ({
                               "projects",
                               index,
                               "description",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           fullWidth
@@ -1019,7 +1006,7 @@ const ResumeBuilder = ({
                               "languages",
                               index,
                               "language",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           fullWidth
@@ -1032,7 +1019,7 @@ const ResumeBuilder = ({
                               "languages",
                               index,
                               "proficiency",
-                              newValue
+                              newValue,
                             );
                           }}
                           renderInput={(params) => (
@@ -1105,7 +1092,9 @@ const ResumeBuilder = ({
       return;
     }
     axios
-      .post(`${BASE_URL}/ai/Aidesc`, { jobDesc: formData.personalInfo.jobTitle })
+      .post(`${BASE_URL}/ai/Aidesc`, {
+        jobDesc: formData.personalInfo.jobTitle,
+      })
       .then((res) => {
         if (res.data && res.data.description) {
           setFormData((prev) => ({
@@ -1139,15 +1128,14 @@ const ResumeBuilder = ({
         console.error("Error:", err);
         setLoading(false);
       });
-
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="h-screen flex bg-gray-100 overflow-hidden">
       {/* Sidebar Component */}
       <div
         className={`bg-white border-r border-gray-200 transition-all ${
-          sidebarCollapsed ? "w-16" : "w-44"
+          sidebarCollapsed ? "w-16" : "w-48"
         } hidden sm:block shrink-0`}
       >
         <div className="p-4 border-b border-gray-200 flex justify-between items-center">
@@ -1189,7 +1177,7 @@ const ResumeBuilder = ({
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col gap-4 w-full md:flex-row px-4 py-4 bg-gray-50">
+      <div className="flex flex-col gap-2 w-full md:flex-row px-1 py-4">
         {/* Form */}
         <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm w-full md:w-2/5">
           {getStepContent(activeStep)}
@@ -1226,9 +1214,8 @@ const ResumeBuilder = ({
         </div>
 
         {/* Preview */}
-        <div className="bg-gray-50 rounded-lg w-full md:w-3/5">
-
-         <Card className="shadow-sm py-3 px-5 mb-5 flex item-center justify-between">
+        <div className="bg-gray-100 rounded-lg w-full md:w-3/5 overflow-auto no-scrollbar">
+          <Card className="shadow-sm py-3 px-5 mb-1 flex item-center justify-between">
             <h3 className="font-semibold">
               <Computer /> Live Preview
             </h3>
@@ -1250,41 +1237,22 @@ const ResumeBuilder = ({
                 <DownloadForOfflineIcon color="info" />
               </Tooltip>
             </h2>
-         </Card>
+          </Card>
 
-         <Card
-            sx={{
-              position: "relative",
-              width: "100%",
-              maxHeight: {
-                xs: "200vh",
-                sm: "300vh",
-              } // Prevent modal from being too tall
-            }}
-          >
+          <div className="flex justify-center p-4">
             {selectedTemplate && (
-              <Box
-                sx={{
-                  transformOrigin: "center top",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "10px",
-                }}
-              >
+              <div ref={(el) => { if(el) el.style.zoom = 0.8; }} className="bg-white shadow-2xl w-[210mm] min-h-[297mm] origin-top">
                 <selectedTemplate.Component formData={formData} />
-              </Box>
+              </div>
             )}
-         </Card>
+          </div>
         </div>
-        
       </div>
 
       {/* AI component Sidebar */}
       <div
         className={`bg-white border-l border-gray-200 transition-all ${
-          aiPanelCollapsed ? "w-12" : "w-60"
+          aiPanelCollapsed ? "w-12" : "w-100"
         } shrink-0`}
       >
         <div className="p-4 border-b border-gray-200 flex justify-between items-center">

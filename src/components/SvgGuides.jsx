@@ -61,7 +61,7 @@ const TemplateSelector = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 py-12 px-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 py-12 px-12 sm:px-6 lg:px-8" data-aos="fade-up">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight sm:text-4xl">

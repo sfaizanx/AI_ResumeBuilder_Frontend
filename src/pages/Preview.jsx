@@ -6,11 +6,9 @@ import ResumeTemplateFour from "../templates/Template4";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   ArrowBack,
-  Print,
-  Palette,
-  CheckCircle,
   Description,
   AutoAwesome,
+  Download,
 } from "@mui/icons-material";
 import {
   Button,
@@ -18,27 +16,33 @@ import {
   Container,
   Typography,
   Box,
-  IconButton,
   Tooltip,
   Zoom,
   Fab,
 } from "@mui/material";
-import { colorOptions } from "../Constant/Color";
+import { useResumeData } from "../common/formdata";
+import { useReactToPrint } from "react-to-print";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { BASE_URL } from "../Constant/constant";
+import { useAuth } from "../context/authContext";
+import { useRef } from "react";
 
-const Preview = ({ formData, selectedColor, setSelectedColor }) => {
-  
+const Preview = () => {
+  const { formData, setFormData } = useResumeData();
 
   const templates = [
     { id: 1, Component: ResumeTemplateOne, name: "Professional" },
     { id: 2, Component: ResumeTemplateTwo, name: "Modern" },
-    { id: 3, Component: ResumeTemplateThree, name: "Creative" },
-    { id: 4, Component: ResumeTemplateFour, name: "Creative" },
+    { id: 3, Component: ResumeTemplateThree, name: "Minimal" },
+    { id: 4, Component: ResumeTemplateFour, name: "Elegant" },
   ];
 
   const [selectedTemplate, setSelectedTemplate] = useState(null);
-  const [hoveredColor, setHoveredColor] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
+  const resumeRef = useRef(null);
+  const { tokenVal, handleOpen } = useAuth();
 
   useEffect(() => {
     if (id) {
@@ -49,141 +53,101 @@ const Preview = ({ formData, selectedColor, setSelectedColor }) => {
 
   const handleBack = () => navigate(`/builder/${id}`);
 
+  const reactToPrintFn = useReactToPrint({
+    contentRef: resumeRef,
+    documentTitle: "Resume",
+  });
+
+  const handlePrint = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/auth/Validtoken`, {
+        headers: {
+          Authorization: `Bearer ${tokenVal}`,
+        },
+      });
+
+      if (res.data?.success) {
+        reactToPrintFn();
+      } else {
+        toast.info("Please login to print or download your resume");
+        handleOpen();
+      }
+    } catch (err) {
+      toast.info("Session Expired or Invalid, please login to print your resume");
+      handleOpen();
+    }
+  };
+
   return (
-    <Container sx={{ py: 4 , mx: {xs:0, md: 'auto'}}}>
+    <Container sx={{ py: 4, mx: { xs: 0, md: "auto" }, maxWidth: "none" }}>
       {selectedTemplate ? (
-        <Box className="flex flex-row lg:flex-row gap-1">
+        <Box className="flex flex-col items-center justify-center gap-4">
+          <style>
+            {`
+              @media print {
+                @page { margin: 0; size: A4; }
+                body { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+              }
+            `}
+          </style>
+
           {/* Resume Preview Section */}
-              <Card
-                id="resume-content"
-                sx={{
-                  p: 0,
-                  boxShadow: 3,
-                  borderRadius: 4,
-                  position: "relative",
-                  overflow: "visible",
-                  "&:before": {
-                    content: '""',
-                    position: "absolute",
-                    top: -8,
-                    left: -8,
-                    right: -8,
-                    bottom: -8,
-                    zIndex: -1,
-                    background: `linear-gradient(45deg, ${selectedColor}20, #ffffff)`,
-                    borderRadius: 8,
-                  },
-                }}
-              >
+          <Box className="flex justify-center w-full px-2" sx={{ overflow: "auto", pb: 10 }}>
+            <Card
+              sx={{
+                p: 0,
+                boxShadow: 8,
+                borderRadius: 0,
+                position: "relative",
+                width: "210mm",
+                minHeight: "297mm",
+                backgroundColor: "white",
+                transformOrigin: "top center",
+                // scale it down slightly on smaller screens if necessary, though typical previews just let it scroll
+                "@media (max-width: 800px)": {
+                   transform: "scale(0.8)",
+                   marginBottom: "-60mm"
+                },
+                "@media (max-width: 600px)": {
+                   transform: "scale(0.55)",
+                   marginBottom: "-120mm"
+                }
+              }}
+            >
+              <div ref={resumeRef} className="w-[210mm] min-h-[297mm] bg-white">
                 <selectedTemplate.Component
                   formData={formData}
-                  selectedColor={selectedColor}
+                  isPreview={true}
                 />
-              </Card>
-
-            {/* Floating Action Buttons */}
-            <Box
-              sx={{
-                position: "fixed",
-                bottom: 24,
-                right: 24,
-                display: "flex",
-                gap: 2,
-                zIndex: 1000,
-              }}
-            >
-              <Tooltip title="Back to editor" arrow TransitionComponent={Zoom}>
-                <Fab color="default" aria-label="back" onClick={handleBack}>
-                  <ArrowBack />
-                </Fab>
-              </Tooltip>
-            </Box>
-
-            {/* Color Palette Floating Button */}
-            <Box
-              sx={{
-                position: "fixed",
-                bottom: 24,
-                left: 24,
-                zIndex: 1000,
-              }}
-            >
-              <Tooltip title="Color palette" arrow TransitionComponent={Zoom}>
-                <IconButton
-                  sx={{
-                    bgcolor: "background.paper",
-                    boxShadow: 3,
-                    "&:hover": {
-                      bgcolor: "background.default",
-                    },
-                  }}
-                  size="large"
-                >
-                  <Palette />
-                </IconButton>
-              </Tooltip>
-
-              {/* Color Picker Dropdown */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  bottom: 56,
-                  left: 0,
-                  bgcolor: "background.paper",
-                  borderRadius: 2,
-                  boxShadow: 3,
-                  p: 2,
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: 1,
-                  width: 160,
-                }}
-              >
-                {colorOptions.map((color, idx) => (
-                  <Tooltip title={color.name} key={idx} arrow>
-                    <Box
-                      onClick={() => setSelectedColor(color.value)}
-                      onMouseEnter={() => setHoveredColor(color.value)}
-                      onMouseLeave={() => setHoveredColor(null)}
-                      sx={{
-                        width: 24,
-                        height: 24,
-                        borderRadius: "50%",
-                        cursor: "pointer",
-                        border:
-                          selectedColor === color.value
-                            ? "2px solid #1976d2"
-                            : hoveredColor === color.value
-                            ? "2px solid #90caf9"
-                            : "1px solid #e0e0e0",
-                        bgcolor: color.value,
-                        transition: "all 0.2s",
-                        transform:
-                          selectedColor === color.value
-                            ? "scale(1.2)"
-                            : hoveredColor === color.value
-                            ? "scale(1.1)"
-                            : "scale(1)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {selectedColor === color.value && (
-                        <CheckCircle
-                          sx={{
-                            color: "white",
-                            fontSize: 16,
-                            filter: "drop-shadow(0 0 2px rgba(0,0,0,0.5))",
-                          }}
-                        />
-                      )}
-                    </Box>
-                  </Tooltip>
-                ))}
-              </Box>
-            </Box>
+              </div>
+            </Card>
           </Box>
+
+          {/* Floating Action Buttons */}
+          <Box
+            sx={{
+              position: "fixed",
+              bottom: 24,
+              right: 24,
+              display: "flex",
+              gap: 2,
+              zIndex: 1000,
+            }}
+          >
+            <Tooltip title="Back to editor" arrow TransitionComponent={Zoom}>
+              <Fab color="default" aria-label="back" onClick={handleBack}>
+                <ArrowBack />
+              </Fab>
+            </Tooltip>
+            
+            <Tooltip title="Download PDF or Print" arrow TransitionComponent={Zoom}>
+              <Fab color="primary" aria-label="print" onClick={handlePrint} variant="extended" sx={{ px: 3 }}>
+                <Download sx={{ mr: 1 }} />
+                Save PDF
+              </Fab>
+            </Tooltip>
+          </Box>
+        </Box>
       ) : (
         <Box textAlign="center" sx={{ maxWidth: 800, mx: "auto" }}>
           <Box
@@ -282,7 +246,6 @@ const Preview = ({ formData, selectedColor, setSelectedColor }) => {
                   >
                     <template.Component
                       formData={formData}
-                      selectedColor={selectedColor}
                       isPreview={true} // Add this prop to templates to handle preview mode
                     />
                   </Box>
