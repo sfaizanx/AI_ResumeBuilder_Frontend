@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, TextField, Button, Typography, Link, Box } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Email } from "@mui/icons-material";
+import { Email, HourglassTop } from "@mui/icons-material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -173,6 +173,7 @@ const LoginPage = ({ setIsLoggedIn, handleClose, tokenId }) => {
           disabled={loading}
         >
           {isLogin ? "Log In" : tokenId ? "Sign Up" : "Verify Email"}
+
         </button>
       </div>
 
@@ -199,16 +200,22 @@ const LoginPage = ({ setIsLoggedIn, handleClose, tokenId }) => {
       )}
       
         <div className="flex justify-center item-center mt-3">
-          <GoogleLogin
-          text={"continue_with"}
-            width={250}
-            onSuccess={(credentialResponse) => {
-              handleGoogleLogin(credentialResponse.credential);
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          />
+          {loading ? (
+            <span>
+              <HourglassTop className="animate-spin text-blue-600" />
+            </span>
+          ): (
+            <GoogleLogin
+            text={"continue_with"}
+              width={250}
+              onSuccess={(credentialResponse) => {
+                handleGoogleLogin(credentialResponse.credential);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          )}
         </div>
     </Card>
   );
